@@ -8,8 +8,6 @@ type UserProfileProp = {
 };
 
 const ProfileUploader = ({ fieldChange, profileUrl }: UserProfileProp) => {
-  const [file, setFile] = useState<File[]>([]);
-
   const url = profileUrl;
 
   const urlView = url?.replace("/preview", "/view");
@@ -20,7 +18,6 @@ const ProfileUploader = ({ fieldChange, profileUrl }: UserProfileProp) => {
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
-      setFile(acceptedFiles);
       fieldChange(acceptedFiles);
       setFileUrl(URL.createObjectURL(acceptedFiles[0]));
     },

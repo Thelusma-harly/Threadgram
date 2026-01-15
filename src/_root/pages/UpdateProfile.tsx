@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const UpdateProfile = () => {
   const { id } = useParams();
   const userId = id ? id : "";
-  const { data: user, isPending: isLoadingUser } = useGetUserById(userId);
+  const { data: user } = useGetUserById(userId);
 
   return (
     <div className="flex flex-1">

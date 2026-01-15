@@ -64,6 +64,10 @@ const PostForm = ({ post, action }: PostFormProps) => {
   }, [post, form]);
 
   async function onSubmit(values: z.infer<typeof PostValidation>) {
+    if (!user.id) {
+      return toast.error("You must be logged in to create a post.");
+    }
+
     const createPostValues = { ...values, creator: user.id };
     const updatePostValue = {
       ...values,

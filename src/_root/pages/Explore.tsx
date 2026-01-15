@@ -6,7 +6,7 @@ import {
   useGetPosts,
   useSearchPost,
 } from "@/lib/react-query/queriesAndMutations";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useInView } from "react-intersection-observer";
 import type { IPost } from "@/types";
@@ -18,7 +18,7 @@ const Explore = () => {
 
   const [searchValue, setSearchValue] = useState("");
 
-  const [debouncedValue, setDebouncedValue] = useDebounce(searchValue, 500);
+  const [debouncedValue] = useDebounce(searchValue, 500);
 
   const { data: searchedPost, isFetching: isSearchFetching } =
     useSearchPost(debouncedValue);

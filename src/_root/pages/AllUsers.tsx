@@ -9,11 +9,13 @@ import { Loader } from "lucide-react";
 const AllUsers = () => {
   const { user } = useUserContext();
   const { data: currentUserData, isPending: isLoadingCurrentUser } =
-    useGetUserById(user.id);
+    useGetUserById(user?.id || "");
 
   const currentUser = currentUserData || {};
 
-  const { data: creators, isPending: isLoadingUsers } = useGetUsers(user.id);
+  const { data: creators, isPending: isLoadingUsers } = useGetUsers(
+    user?.id || ""
+  );
 
   return (
     <div className="common-container scrollbar-global overflow-x-hidden">
