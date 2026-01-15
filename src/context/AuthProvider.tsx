@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/appwrite/api";
 import { transformImageUrl } from "@/lib/utils";
 import type { IUser } from "@/types";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext, INITIAL_USER } from "./AuthContext";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -11,6 +11,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
   const checkAuthUser = async () => {
     setIsLoading(true);
@@ -48,12 +50,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.getItem("cookieFallback") === "[]" ||
         localStorage.getItem("cookieFallback") === null
       ) {
-        navigate("/sign-in");
+        if (pathname !== "/sign-in" && pathname !== "/sign-up") {
+          navigate("/sign-in");
+        }
       }
       await checkAuthUser();
     };
     initializeAuth();
-  }, [navigate]);
+  }, [navigate, pathname]);
 
   const value = {
     user,
