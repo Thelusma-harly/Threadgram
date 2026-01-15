@@ -28,7 +28,7 @@ const GridPostList = ({
         const currentUser =
           postType === "Saved" ? item?.post?.creator : item?.creator;
         return (
-          <li key={post?.$id} className="relative min-w-80 h-80">
+          <li key={post?.$id} className="relative min-w-60 h-80">
             <Link to={`/posts/${post?.$id}`} className="grid-post_link">
               <img
                 src={transformImageUrl(post?.image_url || "")}

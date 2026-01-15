@@ -24,7 +24,7 @@ const UserFollowerList = () => {
 
   return (
     <div className="flex flex-1">
-      <div className="home-container scrollbar-global overflow-x-hidden">
+      <div className="home-container scrollbar-global overflow-x-hidden max-md:pb-[175px]">
         <h2 className="h3-bold md:h2-bold text-left w-full">
           {listType === "followers" ? "People Following Me" : "People I Follow"}
         </h2>
